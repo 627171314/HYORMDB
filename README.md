@@ -1,5 +1,5 @@
 # HYORMDB
-  model到数据库的映射，大多数情况下，无需自己操作数据库。增、删、修改表只需要修改项目中的Model就可以。目的是尽量做到app的升级或因业务导致的model数据修改，而不用修改数据库相关的代码，。
+  model到数据库的映射，大多数情况下，无需自己操作数据库。新增表只需新增model加入到tablefactory、删除表只需从tablefactory中移除、修改表只需要修改项目中的Model就可以。目的是尽量做到app的升级或因业务导致的model数据修改，而不用修改数据库相关的代码。
 
 ###Purpose
 
@@ -19,6 +19,14 @@ _Remark: Please accept my apologize if any bad coding._
 ###Easy Example
 
 To use HYORMDB.
++ (void)createTablesWillUpdate:(void (^)(BOOL willUpdate))willUpdate FinishCallback:(void (^)(BOOL success))block {
+    NSArray *DBTableArray = @[
+        [TestCarModel class],
+        [TestAnimalModel class],
+    ];
+// ...
+}
+
  ```objective-c
  
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
